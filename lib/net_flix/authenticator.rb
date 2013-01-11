@@ -13,15 +13,15 @@ module NetFlix
     end
 
     def key
-      credentials.key
+      ENV['NETFLIX_KEY']
     end
     
     def secret
-      credentials.secret
+      ENV['NETFLIX_SECRET']
     end
 
     def require_credentials
-      raise( ArgumentError, "You must configure your NetFlix API key and secret before using netflix4r.") unless credentials.valid?
+      raise( ArgumentError, "You must configure your NetFlix API key and secret before using netflix4r.") unless ENV['NETFLIX_KEY'].present? && ENV['NETFLIX_SECRET'].present?
     end
 
     def signature_base_string
